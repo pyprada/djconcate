@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Search Results {% endblock title %}
+{% block searchactive %} active {% endblock searchactive %}
+
+{% block body %}
+<div class="container my-2">
+  <h5>Search Results</h5>
+  {% if allPosts|length < 1 %}
+  <p>No Search Results</p>
+   Your Search - <b>{{query}} </b> - did not match any documents.
+  <ul>suggestions : 
+    <li>Try different kkeywords.</li>
+    <li>Make sure that all words are spelled correctly.</li>
+    <li>Try more general keywords.</li>
+  </ul> 
+  {% endif %}
+  {% for post in allPosts %}
+    
+  <div class="cat-date small">{{post.datetime}}</div>
+  <h3>{{post.title}}</h3>
+  <h6>Coding text by {{post.author}}</h6>
+  <p>{{post.content | truncatechars:500}} <a href="/concateblog/{{post.slug}}"><button
+        class='btn btn-primary'>Read More</button></a></p>
+  {% endfor %}      
+</div>
+
+
+{% endblock body %}

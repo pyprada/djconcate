@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Concateblog {% endblock title %}
+{% block concateblogactive %} active {% endblock concateblogactive %}
+
+{% block body %}
+<div class="container my-2">
+  <h5>Python</h5>
+  {% for post in allposts %}
+    
+  <div class="cat-date small">{{post.datetime}}</div>
+  <h3>{{post.title}}</h3>
+  <h6>Coding text by {{post.author}}</h6>
+  <p>{{post.content | truncatechars:500}} <a href="/concateblog/{{post.slug}}"><button
+        class='btn btn-primary'>Read More</button></a></p>
+  {% endfor %}      
+</div>
+
+
+{% endblock body %}

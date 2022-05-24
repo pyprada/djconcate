@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %} Concateblog {% endblock title %}
+{% block concateblogactive %} active {% endblock concateblogactive %}
+
+{% block body %}
+{% load humanize %}
+{% load extra %}
+<div class="container my-2">
+
+     <header class="entry-header">
+
+          <h2 class="entry-title" itemprop="headline"><a href="/about" rel="bookmark">{{post.title}}</a></h2>
+          <h6>Post By {{post.author}}</h6>
+          <p class="blog-post-meta mb-1">{{post.timeStamp}}</p>
+     </header><!-- .entry-header -->
+
+     <!-- <div class="post-image">
+                         
+                         <a href="https://www.sidehustlenation.com/life-hacks/">
+                              <img width="300" height="300" src="https://www.sidehustlenation.com/wp-content/uploads/2022/01/chris-hutchins-1.jpg" data-src="https://www.sidehustlenation.com/wp-content/uploads/2022/01/chris-hutchins-1.jpg" class="attachment-full size-full wp-post-image lazy loaded" alt="chris hutchins" itemprop="image" data-srcset="https://www.sidehustlenation.com/wp-content/uploads/2022/01/chris-hutchins-1.jpg 300w, https://www.sidehustlenation.com/wp-content/uploads/2022/01/chris-hutchins-1-150x150.jpg 150w, https://www.sidehustlenation.com/wp-content/uploads/2022/01/chris-hutchins-1-65x65.jpg 65w" data-sizes="(max-width: 300px) 100vw, 300px" sizes="(max-width: 300px) 100vw, 300px" srcset="https://www.sidehustlenation.com/wp-content/uploads/2022/01/chris-hutchins-1.jpg 300w, https://www.sidehustlenation.com/wp-content/uploads/2022/01/chris-hutchins-1-150x150.jpg 150w, https://www.sidehustlenation.com/wp-content/uploads/2022/01/chris-hutchins-1-65x65.jpg 65w" data-was-processed="true">
+                         </a>
+                    </div> -->
+     <div class="entry-summary" itemprop="text">
+          <p>{{post.content}}</p>
+     </div><!-- .entry-summary -->
+<div class="container">
+     <h5>Comments ({{comments.count}})</h5>
+     <div class="my-2">
+          {% if user.is_authenticated %}
+          <form action="/concateblog/postComment" method="post">
+          
+               <div class="mb-3">
+                 <label for="examplePostComment">Post Comment</label>
+                 <input type="text" class="form-control" name="comment" placeholder="enter comment here"> 
+               </div>
+               
+               <input type="hidden" name="postsrno" value="{{post.srno}}">
+               <input type="hidden" name="parentsno" value="">
+               <button type="submit" class="btn btn-primary">Submit</button>
+               
+     </div>
+     {% csrf_token %}
+     </form>
+          {% else %}
+          <p>Please Login to post a comment.</p>
+          {% endif %}
+          
+     {% for comment in comments %}
+     <div class="row my-3">
+          <div class="col-md-2"><img class="rounded mx-auto d-block w-25 p-2 border border-primary" src="/static/img/loginuser.png" alt="user"></div>
+          <div class="col-md-10"><b>{{comment.user.username}}</b> at {{comment.timeStamp | naturaltime}}
+               <div>{{comment.comment}}</div>
+               <div class="reply mx-0"> 
+                    {% if user.is_authenticated %} 
+                    <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#replybox{{comment.sno}}" aria-expanded="false" aria-controls="replybox{{comment.sno}}">
+                      Reply
+                    </button>
+                    
+                    <div class="collapse" id="replybox{{comment.sno}}">
+                      <div class="card card-body my-2">
+                         <form action="/concateblog/postComment" method="post">
+          
+                              <div class="mb-3">
+                                <label for="examplePostComment">Post Reply</label>
+                                <input type="text" class="form-control" name="comment" placeholder="enter comment here"> 
+                                <input type="hidden" name="parentsno" value="{{comment.sno}}">
+                              </div>
+                              
+                              <input type="hidden" name="postsrno" value="{{post.srno}}">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                              
+                      </div>
+                         {% csrf_token %}
+                         </form> 
+                    </div>
+                    {% else %}
+                    <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#replybox{{comment.sno}}" aria-expanded="false" aria-controls="replybox{{comment.sno}}" disabled>
+                       Login to  Reply
+                       </button>
+                    {% endif %}
+                     <div class="replies my-2">
+                      {% for reply in repDict|get_val:comment.sno %}
+                      <div class="row my-2">
+                           <div class="col-md-1">
+                              <img class="rounded mx-auto d-block w-25 p-2 border border-primary" src="/static/img/loginuser.png" alt="user"></div>
+                         
+                           </div>
+                           <div class="col-md-11 my-1">
+                              <b>{{reply.user.username}}</b><span class="badge badge-secondary">{{reply.timeStamp | naturaltime}}</span> 
+                              <div>{{reply.comment}}</div>
+
+                           </div> 
+                         <br>
+                      </div>
+                      {% endfor %}
+               </div>
+          </div>
+     </div> 
+     {% endfor %}
+     
+
+</div>
+     
+</div>
+{% endblock body %}

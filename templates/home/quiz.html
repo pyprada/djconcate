@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %} Quiz {% endblock title %}
+
+{% block quizactive %} active {% endblock quizactive %}
+
+{% block body %}
+<div class="container my-3">
+  <div class="bix-div-container">
+    <table class="bix-tbl-container" cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr>
+        <td class="bix-td-qno jq-qno-5290" rowspan="2" valign="top" align="left">1.</td>
+        <td class="bix-td-qtxt" valign="top"><p>{{question}}</p></td>
+    </tr>
+    <tr>
+        <td class="bix-td-miscell" valign="top"><table class="bix-tbl-options" id="tblOption_5290" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td nowrap="nowrap" class="bix-td-option bix-td-radio" width="1%" id="tdOptionNo_A_5290"><input type="checkbox" class="result-option cls_5290" id="optionAns_A_5290"></td><td class="bix-td-option" width="1%">A.</td>
+                 <td class="bix-td-option" width="99%" id="tdOptionDt_A_5290"><table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>                                                          
+<td class="bix-inner-td-option">{{answer}}</td>                                                         
+<td id="tdAnswerIMG_A_5290" class="jq-img-answer mx-none mx-lpad-10" valign="middle">               
+   <img src="/_files/images/website/wrong.gif" alt="">  
+</td>                                                         
+</tr>                                                         
+</tbody></table></td></tr><tr><td nowrap="nowrap" class="bix-td-option bix-td-radio" width="1%" id="tdOptionNo_B_5290"><input type="checkbox" class="result-option cls_5290" id="optionAns_B_5290"></td><td class="bix-td-option" width="1%">B.</td>
+                 <td class="bix-td-option" width="99%" id="tdOptionDt_B_5290"><table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>                                                          
+<td class="bix-inner-td-option">{{answer}}</td>                                                         
+<td id="tdAnswerIMG_B_5290" class="jq-img-answer mx-none mx-lpad-10" valign="middle">               
+   <img src="/_files/images/website/wrong.gif" alt="">  
+</td>                                                         
+</tr>                                                         
+</tbody></table></td></tr><tr><td nowrap="nowrap" class="bix-td-option bix-td-radio" width="1%" id="tdOptionNo_C_5290"><input type="checkbox" class="result-option cls_5290" id="optionAns_C_5290"></td><td class="bix-td-option" width="1%">C.</td>
+                 <td class="bix-td-option" width="99%" id="tdOptionDt_C_5290"><table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>                                                          
+<td class="bix-inner-td-option">{{answer}}</td>                                                         
+<td id="tdAnswerIMG_C_5290" class="jq-img-answer mx-none mx-lpad-10" valign="middle">               
+   <img src="/_files/images/website/accept.png" alt="">  
+</td>                                                         
+</tr>                                                         
+</tbody></table></td></tr><tr><td nowrap="nowrap" class="bix-td-option bix-td-radio" width="1%" id="tdOptionNo_D_5290"><input type="checkbox" class="result-option cls_5290" id="optionAns_D_5290"></td><td class="bix-td-option" width="1%">D.</td>
+                 <td class="bix-td-option" width="99%" id="tdOptionDt_D_5290"><table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>                                                          
+<td class="bix-inner-td-option">{{answer}}</td>                                                         
+<td id="tdAnswerIMG_D_5290" class="jq-img-answer mx-none mx-lpad-10" valign="middle">               
+   <img src="/_files/images/website/wrong.gif" alt="">  
+</td>                                                         
+</tr>                                                         
+</tbody></table></td></tr></tbody></table><input type="hidden" class="jq-actual-answer" id="optionAnswer_5290" value="C">
+             <input type="hidden" class="jq-selected-answer" id="optionSelAns_5290" value="">
+             
+<div class="bix-div-answer mx-none" id="divAnswer_5290">
+ <div class="div-ans-des-wrapper">
+    <p><span class="ib-green">Your Answer:</span> Option <span class="jq-user-answer ib-gray ib-bold">(Not Answered)</span></p> 
+    <p><span class="ib-green">Correct Answer:</span> Option <span class="ib-dgray ib-bold">C</span></p> <br>
+
+  </div>
+
+  </div>
+  
+  
+     
+{% endblock body %}
